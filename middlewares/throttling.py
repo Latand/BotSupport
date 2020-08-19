@@ -17,7 +17,6 @@ class ThrottlingMiddleware(BaseMiddleware):
         self.prefix = key_prefix
         super(ThrottlingMiddleware, self).__init__()
 
-    # noinspection PyUnusedLocal
     async def on_process_message(self, message: types.Message, data: dict):
         handler = current_handler.get()
         dispatcher = Dispatcher.get_current()
