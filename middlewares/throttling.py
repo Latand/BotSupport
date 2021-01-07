@@ -21,8 +21,8 @@ class ThrottlingMiddleware(BaseMiddleware):
         handler = current_handler.get()
         dispatcher = Dispatcher.get_current()
         if handler:
-            limit = getattr(handler, 'throttling_rate_limit', self.rate_limit)
-            key = getattr(handler, 'throttling_key', f"{self.prefix}_{handler.__name__}")
+            limit = getattr(handler, "throttling_rate_limit", self.rate_limit)
+            key = getattr(handler, "throttling_key", f"{self.prefix}_{handler.__name__}")
         else:
             limit = self.rate_limit
             key = f"{self.prefix}_message"
@@ -34,4 +34,4 @@ class ThrottlingMiddleware(BaseMiddleware):
 
     async def message_throttled(self, message: types.Message, throttled: Throttled):
         if throttled.exceeded_count <= 2:
-            await message.reply('Too many requests! ')
+            await message.reply("Too many requests!")
