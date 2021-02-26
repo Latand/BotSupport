@@ -71,7 +71,6 @@ async def not_supported(message: types.Message, state: FSMContext):
                          reply_markup=support.cancel_keyboard(second_id))
 
 
-# @dp.callback_query_handler(support.cancel_support.filter())
 @dp.callback_query_handler(support.cancel_support.filter(), state=["in_support", "wait_in_support", None])
 async def exit_support(call: types.CallbackQuery, callback_data: dict, state: FSMContext):
     user_id = int(callback_data.get("user_id"))
