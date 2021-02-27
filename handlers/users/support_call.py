@@ -11,6 +11,9 @@ from loader import dp, bot
 async def ask_support_call(message: types.Message):
     text = "Хотите связаться с техподдержкой? Нажмите на кнопку ниже!"
     keyboard = await support_keyboard(messages="many")
+    if not keyboard:
+        await message.answer("К сожалению, сейчас нет свободных операторов. Попробуйте позже.")
+        return
     await message.answer(text, reply_markup=keyboard)
 
 
